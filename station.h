@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <QDebug>
 
 using namespace std;
 
@@ -13,28 +14,42 @@ vector <int> res;
 class Station
 {
     string mCall, mColor;
-    int mFrequency;
-    int pDelta, pK, pRes1, pRes2;
-    int pTmp;
+    double mFrequency;
+    double pDelta, pRes1, pRes2;
+    int pK;
+    double pTmp;
 
     public:
-        Station(int pDelta, int pK, int mFrequency)
+        Station(double pDelta, int pK, string mCall, string mColor, double mFrequency)
             {
                 this->pDelta = pDelta;
                 this->pK = pK;
+                this->mColor = mColor;
+                this->mCall= mCall;
                 this->mFrequency = mFrequency;
             }
+
+        double getpDelta()
+        {
+            return pDelta;
+        }
+
         int getPk()
         {
             return pK;
         }
 
-        int getpDelta()
+        string getCall()
         {
-            return pDelta;
+            return mCall;
         }
 
-        int getFrequency()
+        string getColor()
+        {
+            return mColor;
+        }
+
+        double getFrequency()
         {
             return mFrequency;
         }
@@ -59,14 +74,12 @@ class Station
         {
             for(int i = 0; i < res.size(); ++i)
             {
-                cout << "[STATION 1]" << endl;
-                cout << "call_sign = NNA_" << i << endl;
-                cout << "color = r" << endl;
+                cout << "[STATION_]"<< i << endl;
+                cout << "call_sign = "<< mCall << i << endl;
+                cout << "color = " << mColor << endl;
                 cout << "frequency = " << res[i] << endl;
                 cout << endl;
             }
         }
 };
-
-
 #endif // STATION_H

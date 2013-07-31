@@ -15,14 +15,15 @@ int main(int argc, char *argv[])
 
    QString callSign;
    QString color;
-   int frequency;
+   double frequency;
 
    QSettings ini("F:/QtProjects/untitled1/test.ini", QSettings::IniFormat);
    ini.beginGroup("STATION_1");
    callSign = ini.value("call_sign").toString();
-   frequency = ini.value("frequency").toInt();
+   color = ini.value("color").toString();
+   frequency = ini.value("frequency").toDouble();
 
-   qDebug() << callSign << frequency;
+   qDebug() << callSign << color << frequency;
    ini.endGroup();
 
 /*
@@ -47,11 +48,15 @@ int main(int argc, char *argv[])
 
 */
 
-   int pDelta, pK, mFrequency;
+   double pDelta, pK;
+   double mFrequency = frequency;
+   string mCall = callSign;
+   string mColor = color;
+
    cout << "Input delta: " << endl; cin >> pDelta;
    cout << "Input k: " << endl; cin >> pK;
-   mFrequency = frequency;
-   Station myStation(pDelta, pK, mFrequency);
+
+   Station myStation(pDelta, pK, mCall, mColor, mFrequency);
    myStation.error();
    myStation.output();
     
